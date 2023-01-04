@@ -23,7 +23,8 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "/home/venkat/Desktop/work/Tarento/Angular/test-app/node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
             "scripts": []
           },
@@ -97,5 +98,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "5e3d6dbc-9a36-4166-a977-9ffbc5aa13d7"
   }
 }
