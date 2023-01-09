@@ -1,0 +1,32 @@
+import { HttpClient } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { map, pipe}  from "rxjs";
+import { User } from "./user.model";
+
+@Injectable()
+export class UserService {
+  public users: any = [];
+
+  constructor(private http: HttpClient){}
+
+  getUsers() {
+    return this.http.get<any[]>("https://dummyjson.com/users")
+      .pipe(
+        map((respData: any) => {
+          const resp = respData.users;
+          return resp
+        })
+      )
+  }
+
+  getUser(index: number) {
+    return this.http.get<any>("https://dummyjson.com/users/"+ index)
+      .pipe(
+        map((respData: any) => {
+          const resp = respData;
+          return resp
+        })
+      )
+  }
+  
+}

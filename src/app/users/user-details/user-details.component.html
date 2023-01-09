@@ -1,0 +1,21 @@
+<div class="col-md-12">
+  <h2>{{user.firstName | titlecase}} {{user.lastName | titlecase}} - Details</h2>
+</div>
+<div class="col-sm-6 col-md-4">
+  <div class="thumbnail" style="padding: 30px;">
+    <img src="{{user.image}}">
+  </div>
+</div>
+<div class="col-sm-6 col-md-6">
+  <p><strong>Name: </strong>{{user.firstName}} {{user.lastName}}</p>
+  <p><strong>Email: </strong>{{user.email}}</p>
+  <p><strong>Gender: </strong>{{user.gender | titlecase}} 
+  <p><strong>Age: </strong> {{user.age}}</p>
+  <p><strong>Date of birth: </strong> {{user.birthDate}}</p>
+  <p><strong>Contact no: </strong>{{user.phone}}</p>  
+  <p><strong>Eye Color: </strong>{{user.eyeColor | titlecase}} 
+  <p><strong>height: </strong>{{user.height}}</p>
+  <p><strong>weight: </strong>{{user.weight}}</p>
+  <p *ngIf="user.address"><strong>Address: </strong>{{user.address.address}}, {{user.address.city}}, {{user.address.state}}, {{user.address.postalCode}}</p>
+  <a routerLink="/users" class="btn btn-success">Back</a>
+</div>

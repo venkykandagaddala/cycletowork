@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -8,12 +9,17 @@ import { HomeComponent } from './home/home.component';
 import { Routes, RouterModule } from '@angular/router';
 import { UsersComponent } from './users/users.component';
 import { CompaniesComponent } from './companies/companies.component';
+import { UserListComponent } from './users/user-list/user-list.component';
+import { UserService } from './users/user.service';
+import { UserListItemComponent } from './users/user-list-item/user-list-item.component';
+import { UserDetailsComponent } from './users/user-details/user-details.component';
 
 
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent},
-  { path: "users", component: UsersComponent},
+  { path: "users", component: UsersComponent },
+  { path: "users/:id", component: UserDetailsComponent},
   { path: "companies", component: CompaniesComponent}
 ]
 
@@ -24,13 +30,17 @@ const appRoutes: Routes = [
     FooterComponent,
     HomeComponent,
     UsersComponent,
-    CompaniesComponent
+    CompaniesComponent,
+    UserListComponent,
+    UserListItemComponent,
+    UserDetailsComponent
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,14 @@
+<div class="col-sm-6 col-md-4">
+  <div class="thumbnail">
+    <img src="{{userElement.image}}" alt="{{userElement.firstName}}">
+    <div class="caption">
+      <h3>{{userElement.firstName}} {{userElement.lastName}}</h3>
+      <p>{{userElement.gender | titlecase}} ({{userElement.age}})</p>
+      <p>Contact no: {{userElement.phone}}</p>
+      <p>
+        <a [routerLink]="[userElement.id]" class="btn btn-success">Details</a> 
+        <a class="btn btn-primary pull-right" role="button">Edit</a>
+      </p>
+    </div>
+  </div>
+</div>

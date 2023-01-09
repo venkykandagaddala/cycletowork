@@ -1,0 +1,5 @@
+<div class="row" *ngIf="users.length > 0">
+  <app-user-list-item *ngFor="let userElm of users" [userElement]="userElm"></app-user-list-item>
+</div>
+
+
