@@ -1,0 +1,10 @@
+<div class="row" *ngIf="!isloading">
+  <div *ngIf="products.length > 0">
+    <app-product-list-item *ngFor="let prodctElm of products" [singleProdct]="prodctElm"></app-product-list-item>
+  </div>
+</div>
+<div class="text-center" *ngIf="isloading">
+  <app-loader></app-loader>
+</div>
+
+

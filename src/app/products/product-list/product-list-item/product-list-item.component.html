@@ -1,0 +1,12 @@
+  <div class="col-sm-6 col-md-4" style="height: 550px;">
+    <div class="thumbnail">
+      <img src="{{singleProdct.thumbnail}}" alt="{{singleProdct.title}}" style="width: 100%; height: 250px;">
+      <div class="caption" style="height: 250px;">
+        <h3>{{singleProdct.title}}</h3>
+        <p>{{singleProdct.description}}</p>
+        <p><strong>${{singleProdct.price}}</strong></p>
+        <p><a [routerLink]="singleProdct.id" class="btn btn-success">View</a> 
+        <a class="btn btn-danger pull-right">Edit</a></p>
+      </div>
+    </div>
+  </div>

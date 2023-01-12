@@ -8,12 +8,15 @@ import { UserService } from '../user.service';
   styleUrls: ['./user-list.component.css']
 })
 export class UserListComponent implements OnInit {
-  public users: any = []
+  public users: any = [];
+  isLoading : boolean = false;
   constructor(private userService: UserService) { }
 
   ngOnInit() {
-   this.users = this.userService.getUsers().subscribe((resData: any) => {
+    this.isLoading = true;
+    this.users = this.userService.getUsers().subscribe((resData: any) => {
     this.users = resData;
+    this.isLoading = false;
    })
   }
 }

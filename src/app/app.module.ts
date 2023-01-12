@@ -13,6 +13,12 @@ import { UserListComponent } from './users/user-list/user-list.component';
 import { UserService } from './users/user.service';
 import { UserListItemComponent } from './users/user-list-item/user-list-item.component';
 import { UserDetailsComponent } from './users/user-details/user-details.component';
+import { ProductsComponent } from './products/products.component';
+import { ProductListComponent } from './products/product-list/product-list.component';
+import { ProductService } from './products/product.service';
+import { ProductListItemComponent } from './products/product-list/product-list-item/product-list-item.component';
+import { ProductDetailsComponent } from './products/product-details/product-details.component';
+import { LoaderComponent } from './shared/loader/loader.component';
 
 
 
@@ -20,7 +26,10 @@ const appRoutes: Routes = [
   { path: '', component: HomeComponent},
   { path: "users", component: UsersComponent },
   { path: "users/:id", component: UserDetailsComponent},
-  { path: "companies", component: CompaniesComponent}
+  { path: "companies", component: CompaniesComponent },
+  { path: "products", component: ProductsComponent},
+  { path: 'products/:id', component: ProductDetailsComponent }
+  
 ]
 
 @NgModule({
@@ -33,14 +42,19 @@ const appRoutes: Routes = [
     CompaniesComponent,
     UserListComponent,
     UserListItemComponent,
-    UserDetailsComponent
+    UserDetailsComponent,
+    ProductsComponent,
+    ProductListComponent,
+    ProductListItemComponent,
+    ProductDetailsComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [UserService],
+  providers: [UserService, ProductService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
