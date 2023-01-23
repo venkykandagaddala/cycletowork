@@ -1,0 +1,135 @@
+<div class="col-md-12">
+  <h2 *ngIf="editMode">Edit -{{productId}}</h2>
+  <h2 *ngIf="!editMode">Add new product</h2>
+</div>
+<div class="text-center" *ngIf="isFormSubmited">
+  <app-loader></app-loader>
+</div>
+<form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+  <div formGroupName="productData">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="Title">Title</label>
+          <input 
+            type="text" 
+            class="form-control" 
+            id="title"
+            formControlName="title"
+            name="title">
+          <span
+            *ngIf="!productForm.get('productData')?.get('title')?.valid && productForm.get('productData')?.get('title')?.touched"
+            class="help-block">Please enter a valid tilte</span>
+        </div>
+        <div class="form-group">
+          <label for="Description">Description</label>
+          <textarea 
+            class="form-control" 
+            id="description"
+            formControlName="description"
+            name="description"
+            rows="3"></textarea>
+            <span
+            *ngIf="!productForm.get('productData')?.get('description')?.valid && productForm.get('productData')?.get('description')?.touched"
+            class="help-block">Please enter a valid description</span>
+        </div>
+        <div class="form-group">
+          <label for="Brand">Brand</label>
+          <input 
+            type="text" 
+            class="form-control" 
+            id="brand"
+            formControlName="brand"
+            name="brand">
+          <span
+            *ngIf="!productForm.get('productData')?.get('brand')?.valid && productForm.get('productData')?.get('brand')?.touched"
+            class="help-block">Please enter a valid brand</span>
+        </div>
+        <div class="form-group">
+          <label for="Category">Category</label>
+          <input 
+            type="text" 
+            class="form-control" 
+            id="category"
+            formControlName="category"
+            name="category">
+          <span
+            *ngIf="!productForm.get('productData')?.get('category')?.valid && productForm.get('productData')?.get('category')?.touched"
+            class="help-block">Please enter a valid category</span>
+        </div>
+        <div class="form-group">
+          <label for="Thumbnail">Thumbnail</label>
+          <input 
+            type="text" 
+            class="form-control" 
+            id="thumbnail"
+            formControlName="thumbnail"
+            name="thumbnail">
+          <span
+            *ngIf="!productForm.get('productData')?.get('thumbnail')?.valid && productForm.get('productData')?.get('thumbnail')?.touched"
+            class="help-block">Please enter a valid thumbnail image</span>
+        </div>      
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="Price">Price</label>
+          <input 
+            type="number" 
+            class="form-control" 
+            id="price"
+            formControlName="price"
+            name="price">
+          <span
+            *ngIf="!productForm.get('productData')?.get('price')?.valid && productForm.get('productData')?.get('price')?.touched"
+            class="help-block">Please enter a valid price</span>
+        </div>
+        <div class="form-group">
+          <label for="Discount Percentage">Discount Percentage</label>
+          <input 
+            type="number" 
+            class="form-control" 
+            id="discountPercentage"
+            formControlName="discountPercentage" 
+            name="discountPercentage">
+          <span
+            *ngIf="!productForm.get('productData')?.get('discountPercentage')?.valid && productForm.get('productData')?.get('discountPercentage')?.touched"
+            class="help-block">Please enter a valid discount percentage</span>
+        </div>
+        <div class="form-group">
+          <label for="Rating">Rating</label>
+          <input 
+            type="number" 
+            class="form-control" 
+            id="rating"
+            formControlName="rating"
+            name="rating">
+          <span
+            *ngIf="!productForm.get('productData')?.get('rating')?.valid && productForm.get('productData')?.get('rating')?.touched"
+            class="help-block">Please enter a valid rating</span>
+        </div>
+        <div class="form-group">
+          <label for="Stock">Stock</label>
+          <input 
+            type="number" 
+            class="form-control" 
+            id="stock" 
+            formControlName="stock"
+            name="stock">
+          <span
+            *ngIf="!productForm.get('productData')?.get('stock')?.valid && productForm.get('productData')?.get('stock')?.touched"
+            class="help-block">Please enter a valid stock</span>
+        </div>
+      </div>  
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <button 
+          type="submit"
+          [disabled]="!productForm.valid && productForm.touched"
+          class="btn btn-success">
+            Submit
+          </button>
+      </div>
+    </div>
+  </div>
+</form>

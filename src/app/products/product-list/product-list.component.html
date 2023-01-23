@@ -2,6 +2,13 @@
   <div *ngIf="products.length > 0">
     <app-product-list-item *ngFor="let prodctElm of products" [singleProdct]="prodctElm"></app-product-list-item>
   </div>
+  <div *ngIf="products.length === 0">
+    <div class="col-md-12 ">
+      <h2 class="text-center">
+        No products found.
+      </h2>
+    </div>
+  </div>
 </div>
 <div class="text-center" *ngIf="isloading">
   <app-loader></app-loader>

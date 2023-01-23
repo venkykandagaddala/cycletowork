@@ -6,7 +6,12 @@
         <p>{{singleProdct.description}}</p>
         <p><strong>${{singleProdct.price}}</strong></p>
         <p><a [routerLink]="singleProdct.id" class="btn btn-success">View</a> 
-        <a class="btn btn-danger pull-right">Edit</a></p>
+        <a 
+          routerLink="{{singleProdct.id}}/edit"
+          class="btn btn-danger pull-right">
+            Edit
+          </a>
+        </p>
       </div>
     </div>
   </div>

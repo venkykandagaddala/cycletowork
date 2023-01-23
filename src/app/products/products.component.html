@@ -1,9 +1,24 @@
 <div class="row">
   <div class="col-md-12">
     <h2>
-      List of products 
-      <button class="btn btn-sm btn-primary pull-right">Add new product</button>
+      List of products
+      <button
+        routerLink="new"
+        class="btn btn-primary pull-right">
+          Add new product
+      </button>
     </h2>
   </div>
 </div>
+  <div class="row">
+    <div class="col-md-6"></div>
+    <div class="col-md-6">
+      <input type="text" 
+        class="form-control pull-right" 
+        placeholder="search here.." 
+        name="searchValue" 
+        [(ngModel)]="searchValue" (input)="onSearch()">
+    </div>
+  </div>
+<br>
 <app-product-list></app-product-list>

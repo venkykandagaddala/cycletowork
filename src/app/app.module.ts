@@ -19,6 +19,8 @@ import { ProductService } from './products/product.service';
 import { ProductListItemComponent } from './products/product-list/product-list-item/product-list-item.component';
 import { ProductDetailsComponent } from './products/product-details/product-details.component';
 import { LoaderComponent } from './shared/loader/loader.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ProductEditComponent } from './products/product-details/product-edit/product-edit.component';
 
 
 
@@ -28,7 +30,9 @@ const appRoutes: Routes = [
   { path: "users/:id", component: UserDetailsComponent},
   { path: "companies", component: CompaniesComponent },
   { path: "products", component: ProductsComponent},
-  { path: 'products/:id', component: ProductDetailsComponent }
+  { path: "products/new", component: ProductEditComponent},
+  { path: 'products/:id', component: ProductDetailsComponent },
+  { path: 'products/:id/edit', component: ProductEditComponent }
   
 ]
 
@@ -47,11 +51,14 @@ const appRoutes: Routes = [
     ProductListComponent,
     ProductListItemComponent,
     ProductDetailsComponent,
-    LoaderComponent
+    LoaderComponent,
+    ProductEditComponent
   ],
   imports: [
     BrowserModule,
-    HttpClientModule,
+    HttpClientModule, 
+    FormsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot(appRoutes)
   ],
   providers: [UserService, ProductService],
