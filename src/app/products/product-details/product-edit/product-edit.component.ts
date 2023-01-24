@@ -13,8 +13,10 @@ export class ProductEditComponent implements OnInit {
 
   editMode = false;
   productId: number;
+  source: string;
   productForm: FormGroup;
   isFormSubmited: boolean = false;
+  localProduct: Product;
 
   constructor(
     private route: ActivatedRoute,
@@ -27,18 +29,32 @@ export class ProductEditComponent implements OnInit {
     this.route.params.subscribe((params: Params) => {
       this.productId = +params["id"];
       this.editMode = params["id"] != null;
-
+      this.source = params['source'];
       this.intilizeForm()
     })
-    
+
+    this.source = this.route.snapshot.queryParams['source']
   }
 
   intilizeForm() {
 
     if (this.editMode) {
-
-      this.productService.getProduct(this.productId)
-
+      this.productService.getProduct(this.productId).subscribe((product: Product) => {
+        this.localProduct = product;
+        this.productForm = new FormGroup({
+          "productData" : new FormGroup({
+            "title" : new FormControl(product.title, Validators.required),
+            "description" : new FormControl(product.description, Validators.required),
+            "price" : new FormControl(product.price, Validators.required),
+            "discountPercentage" : new FormControl(product.discountPercentage, Validators.required),
+            "rating" : new FormControl(product.rating, Validators.required),
+            "stock" : new FormControl(product.stock, Validators.required),
+            "brand" : new FormControl(product.brand, Validators.required),
+            "category" : new FormControl(product.category, Validators.required),
+            "thumbnail" : new FormControl(product.thumbnail, Validators.required)
+          })
+        }) 
+      });
     } else {
       this.productForm = new FormGroup({
         "productData" : new FormGroup({
@@ -61,17 +77,30 @@ export class ProductEditComponent implements OnInit {
     if (this.productForm?.valid){
       this.isFormSubmited = true;
       let productData = this.productForm.get('productData')?.value
-      this.productService.addProduct(productData).subscribe((resp: Product) => {
-        console.log("From Edit product: "+resp);
-        if (resp['id']) {
+      if (this.editMode) {
+        this.productService.updateProduct(productData, this.productId).subscribe((resp: Product) => {
+          console.log("scope" + resp)
+          if(resp['id']) {
+            this.isFormSubmited = false;
+            this.productForm.reset();
+            this.router.navigate(["/products"])
+          }
+        }, (error: any) => {
           this.isFormSubmited = false;
-          this.productForm.reset();
-          this.router.navigate(["/products"])
-        }
-      }, (error: any) => {
-        this.isFormSubmited = false;
-        console.log(error?.message)
-      })
+          console.log(error?.message)
+        })
+      } else {
+        this.productService.addProduct(productData).subscribe((resp: Product) => {
+          if (resp['id']) {
+            this.isFormSubmited = false;
+            this.productForm.reset();
+            this.router.navigate(["/products"])
+          }
+        }, (error: any) => {
+          this.isFormSubmited = false;
+          console.log(error?.message)
+        })
+      }      
     }   
     
   }

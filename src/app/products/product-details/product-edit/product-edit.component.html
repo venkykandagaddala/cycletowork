@@ -1,11 +1,11 @@
 <div class="col-md-12">
-  <h2 *ngIf="editMode">Edit -{{productId}}</h2>
+  <h2 *ngIf="editMode && localProduct">Edit -{{localProduct.title}}</h2>
   <h2 *ngIf="!editMode">Add new product</h2>
 </div>
 <div class="text-center" *ngIf="isFormSubmited">
   <app-loader></app-loader>
 </div>
-<form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+<form *ngIf="productForm" [formGroup]="productForm" (ngSubmit)="onSubmit()">
   <div formGroupName="productData">
     <div class="row">
       <div class="col-md-6">
@@ -125,11 +125,23 @@
       <div class="col-md-12">
         <button 
           type="submit"
-          [disabled]="!productForm.valid && productForm.touched"
+          [disabled]="!productForm.valid"
           class="btn btn-success">
             Submit
-          </button>
-      </div>
+        </button>&nbsp;&nbsp;
+        <a *ngIf="!editMode"
+          class="btn btn-danger" 
+          [routerLink]="['/products']"
+          >Back</a>
+          <a *ngIf="editMode && source === 'index'"
+          class="btn btn-danger" 
+          [routerLink]="['/products']"
+          >Back</a>
+          <a *ngIf="editMode && source === 'show'"
+          class="btn btn-danger" 
+          [routerLink]="['/products', productId]"
+          >Back</a>
+      </div>  
     </div>
   </div>
 </form>

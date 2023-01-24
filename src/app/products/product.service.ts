@@ -49,7 +49,17 @@ export class ProductService {
       .pipe(
         map((repsData: Product) => {
           const resp = repsData;
-          return resp
+          return resp;
+        })
+      )
+  }
+
+  updateProduct(product: Product, id: number) {
+    return this.http.put<Product>("https://dummyjson.com/products/"+id, product)
+      .pipe(
+        map((repsData: Product) => {
+          const resp = repsData
+          return resp;
         })
       )
   }

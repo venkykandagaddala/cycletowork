@@ -1,5 +1,10 @@
 <div class="col-md-12">
-  <h2 *ngIf="product">Specification of {{product.title | titlecase}}</h2>
+  <h2 *ngIf="product">
+    Specification of {{product.title | titlecase}}
+    <span style="float: right;">
+      <a class="btn btn-danger" [routerLink]="['/products', product.id, 'edit']" [queryParams]="{source: 'show'}">Edit</a>
+    </span>
+  </h2>
 </div>
 <div class="row" *ngIf="!isLoading">
   <div class="col-sm-12 col-md-12">
