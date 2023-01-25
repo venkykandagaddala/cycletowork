@@ -21,6 +21,8 @@ import { ProductDetailsComponent } from './products/product-details/product-deta
 import { LoaderComponent } from './shared/loader/loader.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProductEditComponent } from './products/product-details/product-edit/product-edit.component';
+import { AuthComponent } from './auth/auth.component';
+import { AuthService } from './auth/auth.service';
 
 
 
@@ -32,7 +34,8 @@ const appRoutes: Routes = [
   { path: "products", component: ProductsComponent},
   { path: "products/new", component: ProductEditComponent},
   { path: 'products/:id', component: ProductDetailsComponent },
-  { path: 'products/:id/edit', component: ProductEditComponent }
+  { path: 'products/:id/edit', component: ProductEditComponent },
+  { path: "login", component: AuthComponent}
   
 ]
 
@@ -52,7 +55,8 @@ const appRoutes: Routes = [
     ProductListItemComponent,
     ProductDetailsComponent,
     LoaderComponent,
-    ProductEditComponent
+    ProductEditComponent,
+    AuthComponent
   ],
   imports: [
     BrowserModule,
@@ -61,7 +65,7 @@ const appRoutes: Routes = [
     ReactiveFormsModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [UserService, ProductService],
+  providers: [UserService, ProductService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

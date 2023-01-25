@@ -2,6 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Product } from "./product.model";
 import { map, pipe, Subject } from 'rxjs'
 import { Injectable } from "@angular/core";
+import { environment } from "src/environments/environment";
 
 @Injectable()
 export class ProductService {
@@ -15,7 +16,7 @@ export class ProductService {
   }
 
   getProducts(){
-    return this.http.get("https://dummyjson.com/products")
+    return this.http.get(environment.apiUrl+"/products")
       .pipe(
         map((respData :any) => {
           const resp = respData.products;
@@ -25,7 +26,7 @@ export class ProductService {
   }
 
   getProduct(productId: number) {
-    return this.http.get("https://dummyjson.com/products/"+ productId)
+    return this.http.get(environment.apiUrl+"/products/"+ productId)
       .pipe(
         map((respData :any) => {
           const resp = respData
@@ -35,7 +36,7 @@ export class ProductService {
   }
 
   searchProduct(searchText: string) {
-    return this.http.get("https://dummyjson.com/products/search?q="+ searchText)
+    return this.http.get(environment.apiUrl+"/products/search?q="+ searchText)
       .pipe(
         map((respData: any) => {
           const resp = respData.products
@@ -45,7 +46,7 @@ export class ProductService {
   }
 
   addProduct(product: Product){
-    return this.http.post<Product>("https://dummyjson.com/products/add", product)
+    return this.http.post<Product>(environment.apiUrl+"/products/add", product)
       .pipe(
         map((repsData: Product) => {
           const resp = repsData;
@@ -55,7 +56,7 @@ export class ProductService {
   }
 
   updateProduct(product: Product, id: number) {
-    return this.http.put<Product>("https://dummyjson.com/products/"+id, product)
+    return this.http.put<Product>(environment.apiUrl+"/products/"+id, product)
       .pipe(
         map((repsData: Product) => {
           const resp = repsData
