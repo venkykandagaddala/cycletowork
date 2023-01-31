@@ -23,6 +23,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProductEditComponent } from './products/product-details/product-edit/product-edit.component';
 import { AuthComponent } from './auth/auth.component';
 import { AuthService } from './auth/auth.service';
+import { MessageComponent } from './shared/message/message.component';
+import { MessageService } from './shared/message/message.service';
 
 
 
@@ -56,7 +58,8 @@ const appRoutes: Routes = [
     ProductDetailsComponent,
     LoaderComponent,
     ProductEditComponent,
-    AuthComponent
+    AuthComponent,
+    MessageComponent,  
   ],
   imports: [
     BrowserModule,
@@ -65,7 +68,7 @@ const appRoutes: Routes = [
     ReactiveFormsModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [UserService, ProductService, AuthService],
+  providers: [UserService, ProductService, AuthService, MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

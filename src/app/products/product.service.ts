@@ -10,13 +10,14 @@ export class ProductService {
   products: Product[] = []
   searchQuery = new Subject<string>();
   productsCount: number = 0;
+  sortBy = new Subject<string>();
 
   constructor(private http: HttpClient) {
 
   }
 
   getProducts(){
-    return this.http.get(environment.apiUrl+"/products")
+    return this.http.get<Product[]>(environment.apiUrl+"/products")
       .pipe(
         map((respData :any) => {
           const resp = respData.products;
@@ -26,7 +27,7 @@ export class ProductService {
   }
 
   getProduct(productId: number) {
-    return this.http.get(environment.apiUrl+"/products/"+ productId)
+    return this.http.get<Product>(environment.apiUrl+"/products/"+ productId)
       .pipe(
         map((respData :any) => {
           const resp = respData
@@ -36,7 +37,7 @@ export class ProductService {
   }
 
   searchProduct(searchText: string) {
-    return this.http.get(environment.apiUrl+"/products/search?q="+ searchText)
+    return this.http.get<Product[]>(environment.apiUrl+"/products/search?q="+ searchText)
       .pipe(
         map((respData: any) => {
           const resp = respData.products

@@ -1,0 +1,9 @@
+<div class="alert alert-danger"*ngIf="errorMessage && visibility">
+  <button type="button" class="close"  (click)="onClick()">x</button>
+  {{errorMessage}}
+</div>
+
+<div class="alert alert-success"*ngIf="successMesage && visibility">
+  <button type="button" class="close" (click)="onClick()">x</button>
+  {{successMesage}}
+</div>

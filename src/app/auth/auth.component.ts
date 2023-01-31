@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { MessageService } from '../shared/message/message.service';
 import { Auth } from './auth.model';
 import { AuthService } from './auth.service';
 
@@ -21,7 +22,8 @@ export class AuthComponent implements OnInit {
   password: string;
   constructor(
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private messageService: MessageService
     ) { }
 
   ngOnInit(): void {
@@ -33,13 +35,18 @@ export class AuthComponent implements OnInit {
       this.userCredentials.username = this.loginform.value.username;
       this.userCredentials.password = this.loginform.value.password;
       this.authService.login(this.userCredentials).subscribe((resp: Auth) => {
-        if (resp.id) {
-          this.formSubmitting = false;
-          this.router.navigate(["/products"])
-        } else {
-          
-        }
+        this.formSubmitting = false;
+        this.messageService.sucessMessage.next("Succesfully logged in.");
+        this.router.navigate(["/products"])
+      }, error => {
+        this.formSubmitting = false;
+        this.messageService.errorMessage.next(error.error.message);
+        this.loginform.reset();
       })
+    } else {
+      this.formSubmitting = false;
+      this.messageService.errorMessage.next("Please enter a valid credientials.");
+      this.loginform.reset();
     }
     
   }
